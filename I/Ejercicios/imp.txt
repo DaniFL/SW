@@ -1,0 +1,61 @@
+// Función para cargar el diccionario asíncronamente
+async function loadDictionary() {
+  const response = await fetch('dictionary.json');
+  const data = await response.json();
+  return data.words;
+}
+
+// Función para generar una contraseña aleatoria
+async function generatePassword() {
+  const numWords = document.getElementById('num-words').value;
+  const capitalize = document.getElementById('capitalize').checked;
+  const noRepeat = document.getElementById('no-repeat').checked;
+
+  // Cargar el diccionario
+  const dictionary = await loadDictionary();
+
+  // Validar la entrada
+  if (numWords <= 0 || numWords > 10) {
+    alert('El número de palabras debe estar entre 1 y 10.');
+    return;
+  }
+
+  // Crear la contraseña
+  let passwordWords = [];
+  const availableWords = [...dictionary];
+  for (let i = 0; i < numWords; i++) {
+    if (noRepeat && availableWords.length === 0) {
+      alert('No hay suficientes palabras únicas en el diccionario.');
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * availableWords.length);
+    let word = availableWords[randomIndex];
+    word = shuffleWord(word);
+
+    if (capitalize) {
+      word = word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    passwordWords.push(word);
+    if (noRepeat) {
+      availableWords.splice(randomIndex, 1);
+    }
+  }
+
+  // Mostrar la contraseña
+  document.getElementById('generated-password').textContent = passwordWords.join('');
+}
+
+// Función para desordenar las letras de una palabra
+function shuffleWord(word) {
+    let letters = word.split('');
+    for (let i = letters.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [letters[i], letters[j]] = [letters[j], letters[i]];  // Intercambia las letras
+    }
+    return letters.join('');
+}
+
+// Event listener
+document.getElementById('generate-btn').addEventListener('click', generatePassword);

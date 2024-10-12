@@ -1,13 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=chrome">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio HTML - Sistemas Web I</title>
+    <meta name="description" content="Página de ejemplo en HTML">
+    <meta name="author" content="Daniel Fernández López">
+    <meta name="keywords" content="HTML">
+    <title>Ejercicio_1 DanielFernandez</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Landing Page</h1>
 
+<body>
+    <!-- Menú de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Inicio</a>
+        <a class="navbar-brand" href="#">Registrarse</a>
+        <a class="navbar-brand" href="#">Sobre nosotros</a>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1>¡Bienvenido a mi página de ejemplo!</h1>
+        <p>Esta es una página básica con algunos elementos de HTML.</p>
+
+        <!-- Lista ordenada -->
+        <h2>Lista ordenada</h2>
+        <ol>
+            <li>Bici</li>
+            <li>Coche</li>
+            <li>Moto</li>
+        </ol>
+
+        <!-- Lista sin ordenar -->
+        <h2>Lista sin ordenar</h2>
+        <ul>
+            <li><a href="https://colacao.es/" target="_blank" rel="noopener">ColaCao</a></li>
+            <li>Leche</li>
+            <li>Galletas</li>
+        </ul>
+
+        <!-- Imagen -->
+        <h2>Imagen</h2>
+        <img src="https://cdn.pixabay.com/photo/2024/02/22/05/40/natural-scenery-8589165_640.jpg" alt="Imagen de ejemplo" width="500" height="350">
+        <br>
+
+        <!-- Formulario simple -->
+        <h2>Formulario de ejemplo</h2>
+        <form action="/submit" method="post">
+            <label for="fname">Nombre:</label>
+            <input type="text" id="fname" name="fname" required><br><br>
+        
+            <label for="lname">Apellido:</label>
+            <input type="text" id="lname" name="lname" required><br><br>
+
+            <label for="lname">Password:</label>
+            <input type="password" title="Password" required><br><br>
+        
+            <input type="submit" value="Enviar">
+        </form>
+        
+        <br><br>
+
+        <form>
+            <label for="opciones">Lista de elementos (drop-down list):</label>
+            <select name="opciones" id="opciones">
+                <option value="opcion1">Pizza</option>
+                <option value="opcion2">BBQ</option>
+                <option value="opcion3">Hamburguesa</option>
+                <option value="opcion4">Pasta</option>
+            </select>
+        </form>
+        </div>
+
+    <!-- Pie de página -->
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
 </body>
+</html>
