@@ -1,0 +1,54 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+h1,
+h2 {
+    color: #333;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+#register-form {
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    display: block;
+}
+
+#success-message {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+}
