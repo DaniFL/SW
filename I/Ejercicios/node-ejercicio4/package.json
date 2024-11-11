@@ -1,0 +1,22 @@
+{
+  "name": "ejercicio4",
+  "version": "1.0.0",
+  "description": "Ejercicio 4 - NodeJs (Web Scraping)",
+  "main": "app.js",
+  "scripts": {
+    "run": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web-scraping"
+  ],
+  "author": "Daniel Fernández López",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "ejercicio4": "file:",
+    "express": "^4.21.1",
+    "node-schedule": "^2.1.1"
+  }
+}
