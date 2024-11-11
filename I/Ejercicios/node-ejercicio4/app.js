@@ -17,42 +17,43 @@ let featuredArticleData = {
 
 async function getFeaturedArticle() {
     try {
-        // Hacemos la solicitud GET a la URL
+        // Solicitud GET a la URL
         const { data } = await axios.get(url);
 
-        // Usamos cheerio para cargar el HTML y buscar el artículo destacado
+        // Cheerio --> cargar el HTML y buscar el artículo destacado
         const $ = cheerio.load(data);
 
-        // Seleccionamos el contenido del artículo destacado, que está en la sección 'Artículo destacado'
-        const title = $('#main-tfa a title').text().trim();
+        // Capturamos el título del artículo destacado (etiqueta <a> no tenia clase ni id, capturamos la primera que encontramos - eq(0))
+        const title = $('.main-header.main-box-header').children().filter('a').eq(0).text().trim();
         
-        // Seleccionamos todos los párrafos dentro de la sección del artículo destacado
+        // Seleccionamos todos los párrafos dentro de la sección del artículo destacado - capturar texto completo
         let featuredArticle = '';
         $('#main-tfa p').each((i, elem) => {
             featuredArticle += $(elem).text().trim() + '\n';
         });
 
-        const articleLink = 'https://es.wikipedia.org/wiki/Wikipedia:Portada';
+        const articleLink = $('.main-header.main-box-header a').attr('href');
 
         // Actualizamos los datos del artículo destacado
         featuredArticleData = {
             title,
             text: featuredArticle,
-            link: articleLink
+            link: url,
+            link2: `https://es.wikipedia.org${articleLink}`
         };
-
-        // Mostramos el artículo destacado y el enlace en la consola
+        // Mostramos los datos por pantalla
         console.log(`Artículo destacado del día: ${title}`);
         console.log(`Texto del artículo:\n${featuredArticle}`);
-        console.log(`Enlace: ${articleLink}`);
+        console.log(`Enlace Portada: ${url}`);
+        console.log('Enlace Artículo:', `https://es.wikipedia.org${articleLink}`);
 
     } catch (error) {
         console.error('Error al obtener los datos:', error);
     }
 }
 
-// Programamos la tarea para que se ejecute cada día a las 00:00
-schedule.scheduleJob('0 0 * * *', () => {
+// Programamos la tarea para que se ejecute cada hora
+schedule.scheduleJob('0 * * * *', () => {
     getFeaturedArticle();
 });
 
@@ -67,13 +68,13 @@ app.get('/', (req, res) => {
         <h1>Artículo destacado del día</h1>
         <h2>${featuredArticleData.title}</h2>
         <p>${featuredArticleData.text.replace(/\n/g, '<br>')}</p>
-        <a href="${featuredArticleData.link}">Leer más</a>
+        <p><a href="${featuredArticleData.link}">Portada</a></p>
+        <p><a href="${featuredArticleData.link2}">Artículo completo</a></p>
     `);
 });
 
-// Iniciamos el servidor
+// Confiuguración sesión servidor
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`);
-    // Obtenemos el artículo destacado al iniciar el servidor
     getFeaturedArticle();
 });
