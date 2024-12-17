@@ -5,6 +5,10 @@
 - daniel.fernandezlopez@usp.ceu.es
 - 116230
 
+## CONFIGURACIÓN GIT
+- git config credential.helper "cache --timeout=7200"
+- git config --global user.name "daniel.fernandezlopez"
+- git config --global user.email daniel.fernandezlopez@usp.ceu.es
 
 ## 📡 **HTTP (Hypertext Transfer Protocol)**
 
