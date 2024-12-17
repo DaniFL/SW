@@ -58,4 +58,5 @@ function shuffleWord(word) {
 }
 
 // Event listener
+//https://github.com/martacanirome4
 document.getElementById('generate-btn').addEventListener('click', generatePassword);
